@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My Notes</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f4f6f9;
+        }
+
+        .header {
+            background: #007bff;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .container {
+            padding: 15px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        /* Table */
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            margin-top: 10px;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        th {
+            background: #007bff;
+            color: white;
+        }
+
+        tr:hover {
+            background: #f1f1f1;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 6px 10px;
+            margin: 3px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 13px;
+            color: white;
+        }
+
+        .download {
+            background: green;
+        }
+
+        .download:hover {
+            background: darkgreen;
+        }
+
+        .delete {
+            background: red;
+        }
+
+        .delete:hover {
+            background: darkred;
+        }
+
+        .back {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        /* Mobile */
+        @media (max-width: 600px) {
+            th, td {
+                font-size: 12px;
+                padding: 6px;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="header">
+        My Uploaded Notes
+    </div>
+
+    <div class="container">
+
+        <h2>Your Notes</h2>
+
+        <div class="table-container">
+
+            <table>
+
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Category</th>
+                    <th>Status</th>
+                    <th>File</th>
+                    <th>Action</th>
+                </tr>
+
+                {% for note in notes %}
+
+                <tr>
+
+                    <td>{{note[0]}}</td>
+                    <td>{{note[2]}}</td>
+                    <td>{{note[3]}}</td>
+                    <td>{{note[5]}}</td>
+
+                    <td>
+                        <a href="/download/{{note[4]}}" class="btn download">Download</a>
+                    </td>
+
+                    <td>
+                        <a href="/delete_my_note/{{note[0]}}" class="btn delete">Delete</a>
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </table>
+
+        </div>
+
+        <a href="/dashboard" class="back">⬅ Back to Dashboard</a>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>All Notes</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f4f6f9;
+        }
+
+        .header {
+            background: #007bff;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .container {
+            padding: 15px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        /* Search box */
+        .search-box {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .search-box input {
+            padding: 8px;
+            width: 60%;
+            max-width: 250px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .search-box button {
+            padding: 8px 12px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        /* Table */
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            margin-top: 10px;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        th {
+            background: #007bff;
+            color: white;
+        }
+
+        tr:hover {
+            background: #f1f1f1;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 6px 10px;
+            margin: 3px;
+            background: #007bff;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .btn:hover {
+            background: #0056b3;
+        }
+
+        .download {
+            background: green;
+        }
+
+        .download:hover {
+            background: darkgreen;
+        }
+
+        .back {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        /* Mobile */
+        @media (max-width: 600px) {
+            th, td {
+                font-size: 12px;
+                padding: 6px;
+            }
+
+            .search-box input {
+                width: 70%;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="header">
+        All Notes
+    </div>
+
+    <div class="container">
+
+        <h2>Browse Notes</h2>
+
+        <div class="search-box">
+            <form method="get" action="/notes">
+                <input type="text" name="search" placeholder="Search Notes">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+
+        <div class="table-container">
+
+            <table>
+
+                <tr>
+                    <th>ID</th>
+                    <th>User</th>
+                    <th>Title</th>
+                    <th>Category</th>
+                    <th>File</th>
+                </tr>
+
+                {% for n in notes %}
+
+                <tr>
+                    <td>{{n[0]}}</td>
+                    <td>{{n[1]}}</td>
+                    <td>{{n[2]}}</td>
+                    <td>{{n[3]}}</td>
+
+                    <td>
+                        <a href="/uploads/{{n[4]}}" target="_blank" class="btn">View</a>
+                        <a href="/download/{{n[4]}}" class="btn download">Download</a>
+                    </td>
+                </tr>
+
+                {% endfor %}
+
+            </table>
+
+        </div>
+
+        <a href="/dashboard" class="back">⬅ Back to Dashboard</a>
+
+    </div>
+
+</body>
+
+</html>
