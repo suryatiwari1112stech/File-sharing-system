@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Admin Panel</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        }
+
+        th {
+            background-color: #2c3e50;
+            color: white;
+            padding: 12px;
+        }
+
+        td {
+            padding: 10px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        a {
+            text-decoration: none;
+            padding: 6px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            display: inline-block;
+        }
+
+        /* View Button */
+        a[href*="uploads"] {
+            background-color: #3498db;
+            color: white;
+        }
+
+        /* Approve Button */
+        a[href*="approve"] {
+            background-color: #2ecc71;
+            color: white;
+            margin-bottom: 5px;
+        }
+
+        /* Delete Button */
+        a[href*="delete"] {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+        a:hover {
+            opacity: 0.8;
+        }
+
+        /* Mobile responsive */
+        .table-container {
+            overflow-x: auto;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <h2>Admin Panel</h2>
+
+    <div class="table-container">
+        <table>
+
+            <tr>
+                <th>ID</th>
+                <th>User</th>
+                <th>Title</th>
+                <th>Category</th>
+                <th>File</th>
+                <th>Action</th>
+            </tr>
+
+            {% for n in notes %}
+
+            <tr>
+                <td>{{n[0]}}</td>
+                <td>{{n[1]}}</td>
+                <td>{{n[2]}}</td>
+                <td>{{n[3]}}</td>
+
+                <td>
+                    <a href="/uploads/{{n[4]}}" target="_blank">VIEW</a>
+                </td>
+
+                <td>
+                    <a href="/approve/{{n[0]}}">APPROVE</a><br>
+                    <a href="/delete/{{n[0]}}" onclick="return confirm('Are you sure?')">DELETE</a>
+                </td>
+            </tr>
+
+            {% endfor %}
+
+        </table>
+    </div>
+
+</body>
+
+</html>
